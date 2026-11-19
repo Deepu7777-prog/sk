@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#050203">
+<title>Admin | SK Wedding Films</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="adm">
+
+<header class="adm-top">
+  <a class="logo" href="index.html" aria-label="Back to the website">
+    <span class="logo-name">SK Wedding Films</span>
+    <span class="logo-by">Admin</span>
+  </a>
+  <div class="who" id="who" hidden>
+    <span id="whoEmail"></span>
+    <button class="btn line" type="button" id="signOut">Sign out</button>
+  </div>
+</header>
+
+<main class="adm-wrap">
+
+  <!-- not set up yet -->
+  <section class="card pad" id="setup" hidden>
+    <h1>Admin is not set up yet</h1>
+    <p class="sm">The website is not connected to its online storage. Follow <b>ADMIN-SETUP.txt</b>, then paste the project address and key into <b>config.js</b>.</p>
+  </section>
+
+  <!-- sign in -->
+  <section class="card pad narrow" id="login" hidden>
+    <h1>Sign in</h1>
+    <p class="sm">Only the website owner can sign in here.</p>
+    <form id="loginForm" novalidate>
+      <label for="lEmail">Email<input id="lEmail" type="email" autocomplete="username" required></label>
+      <label for="lPass">Password<input id="lPass" type="password" autocomplete="current-password"></label>
+      <div class="row">
+        <button class="btn red" type="submit" id="lGo">Sign in</button>
+        <button class="btn line" type="button" id="lLink">Email me a sign-in link</button>
+      </div>
+      <p class="note" id="lNote" role="status"></p>
+    </form>
+  </section>
+
+  <!-- dashboard -->
+  <section id="app" hidden>
+    <div class="tabs" role="tablist" aria-label="What to manage">
+      <button role="tab" type="button" data-tab="photo" aria-selected="true">Photos</button>
+      <button role="tab" type="button" data-tab="film" aria-selected="false">Films</button>
+      <button role="tab" type="button" data-tab="reel" aria-selected="false">Reels</button>
+      <button role="tab" type="button" data-tab="school" aria-selected="false">School events</button>
+    </div>
+
+    <div class="grid2">
+      <form class="card pad" id="addForm" novalidate>
+        <h2 id="addTitle">Add photos</h2>
+        <p class="sm" id="addHelp"></p>
+
+        <div class="field" data-for="image">
+          <label for="fPhotos">Photos<input id="fPhotos" type="file" accept="image/*" multiple></label>
+          <p class="hint">You can choose several at once. Large photos are resized automatically.</p>
+        </div>
+
+        <fieldset class="field" data-for="video">
+          <legend>Where is the video?</legend>
+          <div class="seg">
+            <label class="opt"><input type="radio" name="src" value="link" checked> <span>Paste a link</span></label>
+            <label class="opt"><input type="radio" name="src" value="upload"> <span>Upload an MP4 file</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field" data-for="video" data-src="link">
+          <label for="fLink">YouTube or Instagram link<input id="fLink" type="url" placeholder="https://www.instagram.com/reel/..." autocomplete="off"></label>
+        </div>
+        <div class="field" data-for="video" data-src="upload" hidden>
+          <label for="fVideo">Video file<input id="fVideo" type="file" accept="video/mp4,video/quicktime,video/webm,video/*"></label>
+          <p class="hint">Up to 50 MB. For longer films, upload to YouTube and paste the link instead.</p>
+        </div>
+        <div class="field" data-for="video">
+          <label for="fCover">Cover image (optional)<input id="fCover" type="file" accept="image/*"></label>
+          <p class="hint" id="coverHint">Shown before the video is played.</p>
+        </div>
+
+        <div class="field" data-for="film">
+          <label for="fTitle">Title<input id="fTitle" type="text" maxlength="90" autocomplete="off"></label>
+        </div>
+        <div class="field" data-for="film">
+          <label for="fDesc">Short description (optional)<input id="fDesc" type="text" maxlength="160" autocomplete="off"></label>
+        </div>
+        <div class="field" data-for="reel">
+          <label for="fCaption">Caption (optional)<input id="fCaption" type="text" maxlength="90" autocomplete="off"></label>
+        </div>
+        <div class="field" data-for="image">
+          <label for="fAlt">What is in the photo? (optional)<input id="fAlt" type="text" maxlength="140" autocomplete="off" placeholder="For example: Bride and groom exchanging garlands"></label>
+        </div>
+        <div class="field" data-for="catfield">
+          <label for="fCat">Category<input id="fCat" type="text" list="catList" maxlength="60" autocomplete="off" placeholder="Choose one or type a new one"></label>
+          <datalist id="catList"></datalist>
+        </div>
+
+        <button class="btn red" type="submit" id="addGo">Add to website</button>
+        <div class="prog" id="prog" hidden><div class="bar"><i id="progBar"></i></div><span id="progText"></span></div>
+        <p class="note" id="addNote" role="status"></p>
+      </form>
+
+      <div>
+        <h2 id="listTitle">On the website</h2>
+        <p class="sm" id="listHelp"></p>
+        <ul class="items" id="items"></ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
