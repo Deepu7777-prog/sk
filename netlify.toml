@@ -1,0 +1,3 @@
+# The portfolio lives in the sk-wedding-films folder, not the repo root.
+[build]
+  publish = "sk-wedding-films"
