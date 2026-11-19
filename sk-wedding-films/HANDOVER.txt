@@ -1,0 +1,28 @@
+SK WEDDING FILMS - PUBLISH AND HAND OVER (about 30 minutes, all free)
+
+A. PUT THE CODE ON GITHUB
+ 1. Sign in at github.com (use the client's own account if he should own it).
+ 2. New repository > name: sk-wedding-films > Create.
+ 3. Click "uploading an existing file", drag in EVERYTHING from inside the unzipped folder
+    (index.html, admin.html, images, videos, ...). Commit.
+    Or, with git installed:  git remote add origin <repo-url> && git push -u origin main
+
+B. DEPLOY (pick one, both free)
+ Netlify:  app.netlify.com > Add new site > Import from GitHub > pick the repo.
+           Build command: leave empty. Publish directory: leave empty (.) > Deploy.
+ Cloudflare Pages / Vercel work the same way: no build, root folder.
+ Every later change pushed to GitHub updates the live site automatically.
+ You get an address like  sk-wedding-films.netlify.app  (a custom domain can be added later).
+
+C. TURN ON THE ADMIN PAGE
+ Follow ADMIN-SETUP.txt. Use the live address from step B in the Supabase "URL Configuration"
+ (Site URL and Redirect URL = https://YOUR-ADDRESS/admin.html).
+ Paste the project URL and anon key into config.js, commit, wait ~1 minute.
+
+D. HANDOVER CHECKLIST FOR SATHISH
+ [ ] He can open https://YOUR-ADDRESS/admin.html and sign in as satish.ok65@gmail.com
+ [ ] He added one test photo and deleted it
+ [ ] He has the Supabase login, GitHub login and Netlify login saved somewhere safe
+ [ ] Supabase free projects pause after 7 days with no activity; opening the admin page weekly,
+     or upgrading, prevents that.
+ [ ] Add the live link to the resume (the "[ Portfolio link to be added here ]" line).

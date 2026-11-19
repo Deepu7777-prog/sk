@@ -1,0 +1,56 @@
+ADMIN SETUP (one time, about 15 minutes)
+=========================================
+This lets the owner, satish.ok65@gmail.com, add and remove photos, films and reels
+from a private page on the website (admin.html) with no coding.
+
+You need: a free Supabase account (supabase.com) and a place to host the website
+(Netlify, Vercel, GitHub Pages or any web host).
+
+STEP 1. Create the project
+  - Go to supabase.com, sign up, and click "New project".
+  - Name it "sk-wedding-films", set a database password (save it), choose the closest region, click Create.
+  - Wait until the project finishes setting up.
+
+STEP 2. Create the tables and storage rules
+  - Left menu: SQL Editor > New query.
+  - Open the file supabase-setup.sql, copy everything, paste it in, press Run.
+  - You should see "Success". (It is safe to run again.)
+
+STEP 3. Create the owner login
+  - Left menu: Authentication > Users > Add user > Create new user.
+  - Email: satish.ok65@gmail.com
+  - Password: choose a strong password.
+  - Tick "Auto Confirm User", then create.
+
+STEP 4. Stop strangers from signing up
+  - Authentication > Sign In / Providers (or Settings) > turn OFF "Allow new users to sign up".
+
+STEP 5. Allow the email sign-in link (optional, only if you want the "Email me a sign-in link" button)
+  - Authentication > URL Configuration.
+  - Site URL: your website address, for example https://www.yourwebsite.com
+  - Redirect URLs: add https://www.yourwebsite.com/admin.html
+
+STEP 6. Connect the website
+  - Project Settings > API.
+  - Copy the "Project URL" and the "anon public" key.
+  - Open config.js and paste them between the quotes:
+        supabaseUrl: "https://xxxx.supabase.co",
+        supabaseAnonKey: "eyJ...",
+  - The anon key is meant to be public. The rules from Step 2 stop anyone except the owner from changing anything.
+
+STEP 7. Publish
+  - Upload the whole folder (including images, videos, config.js and admin.html) to your host.
+  - Open  https://your-website/admin.html  and sign in with satish.ok65@gmail.com and the password.
+
+USING THE ADMIN PAGE
+  - Photos: choose photos, pick or type a category, press "Add to website".
+  - Films / Reels: paste a YouTube or Instagram link, or upload an MP4 (up to 50 MB).
+  - Each item has "Move to top" and "Delete".
+  - New items appear on the website straight away (refresh the page to see them).
+  - The photos and films already in media.js stay as they are. Items added in the admin page appear after them.
+
+GOOD TO KNOW
+  - The free Supabase plan includes 1 GB of storage and a 50 MB limit per file. For long films, upload to YouTube and paste the link.
+  - Instagram and YouTube reels play from Instagram and YouTube. Make sure the posts are public.
+  - If the owner email ever changes, change it in config.js and in supabase-setup.sql (run the file again).
+  - Free Supabase projects pause after a week of no activity. Opening the website or the admin page counts as activity; if it ever pauses, press "Restore" in the Supabase dashboard.
